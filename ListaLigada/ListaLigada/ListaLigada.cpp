@@ -127,7 +127,7 @@ void inserirElemento()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
-
+ 
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
@@ -145,12 +145,56 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	
+	NO* excluir = NULL;
+	int elemento; 
+	cout << "Qual valor deseja excluir? \n";
+	cin >> elemento;
+
+	NO* aux = primeiro; 
+
+	// Verificando se o elemento é o primeiro da lista
+	if (aux == primeiro && aux->valor == elemento) 
+	{
+		excluir = aux;	
+		primeiro = excluir->prox;   
+	}
+	// Se não for, percorremos a lista para achar ele, o anterior e o próximo.
+	else {
+		NO* ant = primeiro; 
+		while (aux != NULL) {
+			
+			if (aux->valor == elemento) {
+				excluir = aux;
+				ant->prox = excluir->prox;  
+			}
+			ant = aux;   
+			aux = aux->prox;  
+		}
+	}
+
+	if (excluir) {
+		free(excluir);
+		cout << "Elemento excluido com sucesso!\n";
+	}
+	else {
+		cout << "O elemento digitado nao foi encontrado." << endl;
+	}
+		
 }
 
 void buscarElemento()
 {
+	int elemento; 
+	cout << "Digite um valor: \n";	
+	cin >> elemento; 
 	
+	NO* busca = posicaoElemento(elemento); 
+	if (busca != NULL) {
+		cout << "Elemento encontrado na lista!" << endl;
+	}
+	else {
+		cout << "O elemento digitado nao foi encontrado" << endl;
+	}
 }
 
 
