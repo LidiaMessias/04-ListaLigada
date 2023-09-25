@@ -134,12 +134,19 @@ void inserirElemento()
 	}
 	else
 	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
+		NO* busca = posicaoElemento(novo->valor);
+		if (busca != NULL) {
+			cout << "Esse elemento já foi inserido! \n";
+			return;
 		}
-		aux->prox = novo;
+		else {
+			// procura o final da lista
+			NO* aux = primeiro;
+			while (aux->prox != NULL) {
+				aux = aux->prox;
+			}
+			aux->prox = novo;
+		}
 	}
 }
 
